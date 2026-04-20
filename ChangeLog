@@ -6,3 +6,11 @@ Hypothesis: Unique Loan IDs or trailing spaces in categorical columns may be mas
 Re Checked the duplicate removal and took away the unique identifiers to find there were several duplicates actually and the data amount changed.
 "During Phase 2 (ETL), an initial deduplication check returned 0 matches. However, after performing data normalization (Trimming/Cleaning),
 a second pass identified 18,527 duplicate records. These were removed to ensure the integrity of the final analysis."
+
+Data Integrity Note: Handling NAICS Code '0'
+
+Discovery: 201,655 records (approx. 22.4% of the dataset) contained a '0' entry for the NAICS industry code.
+
+Decision: Retained all records. Deleting them would have caused a significant under-reporting of the total loan volume.
+
+Action: Re-classified '0' as "Unknown Industry" to ensure accurate financial totals while maintaining clear boundaries for industry-specific analysis.
