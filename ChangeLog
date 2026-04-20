@@ -1,0 +1,3 @@
+"Ran initial deduplication check on 899k+ rows. 
+Result: 0 exact duplicates found.
+Hypothesis: Unique Loan IDs or trailing spaces in categorical columns may be masking near-duplicates. Will re-verify after the Trimming phase."
