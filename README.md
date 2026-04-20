@@ -32,3 +32,5 @@ Phase 3: Storytelling & Visualization (Pending)
 This is what it should look like above... lol I am nowhere near that professionalisim quite yet. 
 The data? it's there lol am I tracking myself? Yep! will there be more? Absolutely :)
 For now? Walk with me :) 
+with all of that being said, I am having to seperate the file due to limitations on memory it is now 42026 and 1637 cst I will be taking time for hygiene of the data and making sure it remains intact 
+
