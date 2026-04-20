@@ -14,3 +14,7 @@ Discovery: 201,655 records (approx. 22.4% of the dataset) contained a '0' entry 
 Decision: Retained all records. Deleting them would have caused a significant under-reporting of the total loan volume.
 
 Action: Re-classified '0' as "Unknown Industry" to ensure accurate financial totals while maintaining clear boundaries for industry-specific analysis.
+
+Note the Migration: "Segmented 500k rows of zero-value NAICS data into yearly sub-sheets (1962–2018)."
+
+Note the System Optimization: "Implemented file-splitting to resolve hardware resource exhaustion and network latency issues."
