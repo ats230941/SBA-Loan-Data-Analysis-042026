@@ -1,3 +1,8 @@
 "Ran initial deduplication check on 899k+ rows. 
 Result: 0 exact duplicates found.
 Hypothesis: Unique Loan IDs or trailing spaces in categorical columns may be masking near-duplicates. Will re-verify after the Trimming phase."
+
+
+Re Checked the duplicate removal and took away the unique identifiers to find there were several duplicates actually and the data amount changed.
+"During Phase 2 (ETL), an initial deduplication check returned 0 matches. However, after performing data normalization (Trimming/Cleaning),
+a second pass identified 18,527 duplicate records. These were removed to ensure the integrity of the final analysis."
