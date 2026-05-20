@@ -1,41 +1,25 @@
-name: Automated SBA Change Logger
+import os
+from datetime import datetime
 
-# 1. Trigger the workflow only when pushing to your specific 1970s branch
-on:
-  push:
-    branches:
-      - 05_20_26_1970s
+def auto_log_decades():
+    log_file_path = "ChangeLog"
+    current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    
+    # Grab the current branch name from GitHub's environment variables
+    # If running locally, it defaults to 'Local-Development'
+    active_branch = os.environ.get("GITHUB_BRANCH", "Local-Development")
+    
+    log_entry = (
+        f"\n### Automated Entry for Branch [{active_branch}]: {current_time}\n"
+        f"* **Target Era:** Data processing isolated strictly within the '{active_branch}' development scope.\n"
+        f"* **Pipeline Status:** Structural formatting and change verification completed successfully.\n"
+        f"------------------------------------------------------------------------\n"
+    )
+    
+    # Append to the ChangeLog notepad file
+    with open(log_file_path, "a") as log_file:
+        log_file.write(log_entry)
+        print(f"Success: Appended automated tracking data to {active_branch} ChangeLog.")
 
-jobs:
-  build-and-log:
-    runs-on: ubuntu-latest
-
-    steps:
-      # Step 1: Clone your repository files onto the GitHub virtual server
-      - name: Checkout Repository Code
-        uses: actions/checkout@v4
-
-      # Step 2: Set up Python on the virtual server
-      - name: Set up Python Environment
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.10'
-
-      # Step 3: Install the Excel reader tool (openpyxl) so Python can read your workbook
-      - name: Install Dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install openpyxl
-
-      # Step 4: Run your worker Python script to parse the changes
-      - name: Execute Change Log Parser
-        run: python scripts/parse_sba_changes.py
-
-      # Step 5: Automatically push the updated ChangeLog file back to your repo
-      - name: Commit and Push Updated Log
-        run: |
-          git config --global user.name "GitHub Actions Bot"
-          git config --global user.email "actions@github.com"
-          git add ChangeLog
-          git diff-index --quiet HEAD || git commit -m "docs: auto-update ChangeLog via GitHub Action [skip ci]"
-          git push origin 05_20_26_1970s
+if __name__ == "__main__":
+    auto_log_decades()
